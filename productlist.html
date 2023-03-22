@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="productlist_style.css">
+</head>
+<body>
+    <h1>前端綜合練習</h1>
+    <div class="searchBar">
+        <select name="" id="">
+            <option value="none">依商品類別選擇</option>
+            <option value="3C">3C</option>
+            <option value="food">食品</option>
+            <option value="drink">飲料</option>
+        </select>
+        <button>查詢</button>
+        <input type="text" id="">
+        <button id="search">搜尋</button>
+    </div>
+    <table id="productTable">
+        <thead>
+            <tr>
+                <td>ProductNumber</td>
+                <td>ProductName</td>
+                <td>Amount</td>
+                <td>Price</td>
+                <td>ProductType</td>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- 資料 -->
+        </tbody>
+    </table>
+    <template id="productrow">
+        <tr>
+            <td class="record"></td>
+            <td></td>
+        </tr>
+    </template>
+
+
+
+    
+
+    <script type="module">
+        import {product} from "/product_homework/product.js";
+        window.onload=function(){
+            let tbody =document.querySelector("tbody");
+        }
+
+        function loadData(data){
+
+        }
+
+
+
+    </script>
+</body>
+</html>
