@@ -9,52 +9,71 @@
 </head>
 <body>
     <h1>前端綜合練習</h1>
-    <div class="searchBar">
-        <select name="" id="">
-            <option value="none">依商品類別選擇</option>
-            <option value="3C">3C</option>
-            <option value="food">食品</option>
-            <option value="drink">飲料</option>
-        </select>
-        <button>查詢</button>
-        <input type="text" id="">
-        <button id="search">搜尋</button>
+    <div class="selectBar">
+        <div class="wrap">
+            <p>商品類別: </p>
+            <select name="productSelect" id="ProductSelect">
+                <option value="ALL">ALL</option>
+                <option value="3C">3C</option>
+                <option value="food">食品</option>
+                <option value="drink">飲料</option>
+            </select>
+            <button id="sbselect">篩選查詢</button>
+        </div>
     </div>
-    <table id="productTable">
-        <thead>
-            <tr>
-                <td>ProductNumber</td>
-                <td>ProductName</td>
-                <td>Amount</td>
-                <td>Price</td>
-                <td>ProductType</td>
-            </tr>
-        </thead>
-        <tbody>
-            <!-- 資料 -->
-        </tbody>
-    </table>
-    <template id="productrow">
-        <tr>
-            <td class="record"></td>
-            <td></td>
-        </tr>
-    </template>
-
+    <div class="searchBar">
+        <div class="wrap">
+            <p>編號查詢: </p>
+            <input type="text" placeholder="請輸入商品的編號">
+            <button id="check">確認查詢</button>
+        </div>
+    </div>
+    <div class="priceSelect">
+        <p>價格篩選: </p>
+        
+    </div>
+    <div class="container"></div>
 
 
     
 
     <script type="module">
         import {product} from "/product_homework/product.js";
+
+        let container = document.getElementById("container");
+        let table = document.createElement("table");
+        let thead = document.createElement("thead");
+        let tbody = document.createElement("tbody");
+
+        //表頭
+        let title = ["商品編號", "商品名稱", "商品數量", "商品價格", "商品類型"];
+        let tr = document.createElement("tr");
+        title.forEach(item =>{
+            let td = document.createElement("td");
+            td.innerHTML = item;
+            tr.append(td);
+        })
+        thead.append(tr);
+        table.append(thead);
+        //表內容
+        
+
+
+
+
+
+
+
+        let btnSBSelect;
         window.onload=function(){
-            let tbody =document.querySelector("tbody");
+            btnSBSelect = document.getElementById("sbselect");
+            btnSBSelect.addEventListener("click",Showdata);
         }
 
-        function loadData(data){
-
+        function Showdata(){
+            let productSelect = document.getElementById("ProductSelect");
         }
-
+        tbody.innerHTML = "";
 
 
     </script>
