@@ -8,34 +8,33 @@
     <link rel="stylesheet" href="productlist_style.css">
 </head>
 <body>
-    <h1>前端綜合練習</h1>
-    <div class="selectBar">
-        <div class="wrap">
-            <p>商品類別: </p>
-            <select name="productSelect" id="ProductSelect">
-                <option value="ALL">ALL</option>
-                <option value="3C">3C</option>
-                <option value="food">食品</option>
-                <option value="drink">飲料</option>
-            </select>
-            <button id="sbselect">篩選查詢</button>
+    <div class="productlist">
+        <h1>前端綜合練習-產品清單</h1>
+        <div class="selectBar">
+            <div class="wrap">
+                <p>商品類別: </p>
+                <select name="productSelect" id="ProductSelect">
+                    <option value="ALL">ALL</option>
+                    <option value="3C">3C</option>
+                    <option value="food">食品</option>
+                    <option value="drink">飲料</option>
+                </select>
+                <button id="sbselect">篩選查詢</button>
+            </div>
         </div>
-    </div>
-    <div class="searchBar">
-        <div class="wrap">
-            <p>編號查詢: </p>
-            <input type="text" placeholder="請輸入商品的編號">
-            <button id="check">確認查詢</button>
+        <div class="searchBar">
+            <div class="wrap">
+                <p>編號查詢: </p>
+                <input type="text" placeholder="請輸入商品的編號">
+                <button id="check">確認查詢</button>
+            </div>
         </div>
-    </div>
-    <div class="priceSelect">
-        <p>價格篩選: </p>
+        <div class="priceSelect">
+            <p>價格篩選: </p>
         
+        </div>
+        <div class="container"></div>
     </div>
-    <div class="container"></div>
-
-
-    
 
     <script type="module">
         import {product} from "/product_homework/product.js";
@@ -56,8 +55,12 @@
         thead.append(tr);
         table.append(thead);
         //表內容
-        
-
+        for(var i=0; i < product.length; i++){
+            console.log(product[i]);
+        }
+        product.forEach((item,index)=>{
+            console.log(index, item, typeof item)
+        })
 
 
 
