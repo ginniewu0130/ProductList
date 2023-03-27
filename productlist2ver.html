@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>產品清單版本2</title>
+    <link rel="stylesheet" href="productlist_style2.css">
+</head>
+<body>
+    <div class="productlist">
+        <h1>前端綜合練習-產品清單</h1>
+        <div class="selectBar">
+            <div class="wrap">
+                <label>商品類別: </label>
+                <select id="ProductSelect">
+                    <option value="ALL">ALL</option>
+                    <option value="3C">3C</option>
+                    <option value="食品">食品</option>
+                    <option value="飲料">飲料</option>
+                </select>
+            </div>
+        </div>
+        <div class="searchBar">
+            <div class="wrap">
+                <label>編號查詢: </label>
+                <input type="text" placeholder="請輸入商品的編號" id="searchInput">
+                <button id="searchBtn">確認查詢</button>
+            </div>
+        </div>
+        <div class="priceSelect">
+            <div class="wrap">
+                <label>價格篩選: </label>
+                <select id="priceFilter">
+                    <option value="0">全部</option>
+                    <option value="1">100元以下</option>
+                    <option value="2">100~1000元</option>
+                    <option value="3">1000元以上</option>
+                    <option value="4">10000元以上</option>
+                </select>
+            </div>
+        </div>
+        <div class="container" id="productContainer"></div>
+    </div>
+
+    <script type="module">
+        import {product} from "/product_homework/product.js";
+        
+        const productContainer = document.querySelector("#productContainer");
+        const productSelect = document.querySelector("#ProductSelect");
+
+        const renderProduct = (product) => {
+            let amountClass=" ";
+            if (product.Amount === 0){
+                amountClass="sold-out";
+            }
+            return `
+            <div class="products${amountClass}">
+            <h3>${product.ProductName}</h3>
+            <p>商品編號: ${product.ProductNumber}</p>
+            <p>商品數量: ${product.Amount}</p>
+            <p>商品價格: ${product.Price}</p>
+            <p>商品類型: ${product.ProductType}</p>
+            </div>
+        `;
+        };
+        productContainer.innerHTML = product.map(renderProduct).join("");
+        //商品類別變化
+        const filterProductByType = (type) => {
+            if (type === "ALL") {
+                return product;
+            }
+            return product.filter(product => product.ProductType === type);
+        };
+        
+        productSelect.addEventListener("change", () => {
+            const ProductType = productSelect.value;
+            const filteredProduct = filterProductByType(ProductType);
+            productContainer.innerHTML = filteredProduct.map(renderProduct).join("");
+        });
+
+        //商品編號查詢，全小寫判斷
+        searchBtn.addEventListener("click", () => {
+        const productNumber = searchInput.value.trim().toLowerCase();
+        if (productNumber === "") {
+            alert("請輸入商品編號");
+            return;
+        }
+        const filteredProducts = product.filter((product) => {
+            return product.ProductNumber.toLowerCase() === productNumber;
+        });
+        if (filteredProducts.length === 0) {
+            alert("找不到符合的產品");
+            return;
+        }
+        //符合條件的資料
+        productContainer.innerHTML = filteredProducts.map(renderProduct).join("");
+        });
+
+        const priceFilter = document.querySelector("#priceFilter");
+        const filterProductByPrice = (priceRange) => {
+        return product.filter(product => {
+            switch (priceRange) {
+            case "1":
+                return product.Price < 100;
+            case "2":
+                return product.Price >= 100 && product.Price < 1000;
+            case "3":
+                return product.Price >= 1000;
+            case "4":
+                return product.Price >= 10000;
+            default:
+                return true;
+            }
+        });
+        };
+
+        priceFilter.addEventListener("change", () => {
+        const priceRange = priceFilter.value;
+        const filteredProduct = filterProductByPrice(priceRange);
+        productContainer.innerHTML = filteredProduct.map(renderProduct).join("");
+        });
+    </script>
+</body>
+</html>

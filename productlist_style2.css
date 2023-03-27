@@ -1,0 +1,65 @@
+
+body {
+    background-color: #f4f4f4;
+}
+h1 {
+    font-size: 40px;
+    font-family: "標楷體";
+    text-align: center;
+    margin: 24px 0;
+}
+.selectBar,
+.searchBar,
+.priceSelect {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 16px 0;
+}
+.wrap {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+label {
+    font-weight: bold;
+}
+select,
+input[type="text"],
+button {
+    padding: 8px 16px;
+    margin-left: 16px;
+    border: 2px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+    background-color: #fff;
+    color: #333;
+}
+button {
+    background-color: #4CAF50;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+}
+.container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin: 16px 0;
+}
+.products {
+    width: 300px;
+    border: 2px solid #ccc;
+    border-radius: 5px;
+    padding: 16px;
+    margin: 16px;
+}
+.productssold-out{
+    width: 300px;
+    border: 2px solid #ccc;
+    border-radius: 5px;
+    padding: 16px;
+    margin: 16px;
+    opacity: .5;
+    text-decoration: line-through solid red;
+}

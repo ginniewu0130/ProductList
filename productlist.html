@@ -12,8 +12,8 @@
         <h1>前端綜合練習-產品清單</h1>
         <div class="selectBar">
             <div class="wrap">
-                <p>商品類別: </p>
-                <select name="productSelect" id="ProductSelect">
+                <label>商品類別: </label>
+                <select id="ProductSelect">
                     <option value="ALL">ALL</option>
                     <option value="3C">3C</option>
                     <option value="食品">食品</option>
@@ -23,14 +23,14 @@
         </div>
         <div class="searchBar">
             <div class="wrap">
-                <p>編號查詢: </p>
+                <label>編號查詢: </label>
                 <input type="text" placeholder="請輸入商品的編號" id="searchInput">
                 <button id="searchBtn">確認查詢</button>
             </div>
         </div>
         <div class="priceSelect">
             <div class="wrap">
-                <p>價格篩選: </p>
+                <label>價格篩選: </label>
                 <select id="priceFilter">
                     <option value="0">全部</option>
                     <option value="1">100元以下</option>
@@ -38,7 +38,6 @@
                     <option value="3">500~1000元</option>
                     <option value="4">1000元以上</option>
                 </select>
-                <button id="filterBtn">價格查詢</button>
             </div>
         </div>
         <div class="container" id="productContainer"></div>
@@ -46,6 +45,7 @@
 
     <script type="module">
         import {product} from "/product_homework/product.js";
+
         const tableContainer = document.querySelector("#productContainer");
         // 動態生成表格
         const table = document.createElement("table");
@@ -74,8 +74,7 @@
         
         // 顯示所有商品的函式
         function showAllProducts() {
-            // 清空表格內容
-            table.innerHTML = "";
+            table.innerHTML = "";// 清空表格內容
             // 重新生成表格標題
             const headerRow = document.createElement("tr");
             const headerColumns = ["商品編號", "商品名稱", "數量", "價格", "商品類別"];
@@ -99,9 +98,10 @@
             });
         }
 
+
         // 顯示指定商品類別的函式
         function showProductsByType(productType) {
-            table.innerHTML = "";// 清空表格內容
+            table.innerHTML = "";
             // 重新生成表格標題
             const headerRow = document.createElement("tr");
             const headerColumns = ["商品編號", "商品名稱", "數量", "價格", "商品類別"];
@@ -125,7 +125,7 @@
             });
         }
 
-        // 監聽下拉式選單的變化
+        //商品類別下拉式選單變化
         const productSelect = document.querySelector("#ProductSelect");
         productSelect.addEventListener("change", () => {
             const selectedValue = productSelect.value;
@@ -136,6 +136,9 @@
             }
         });
         tableContainer.appendChild(table);//插入表格內容
+        
+
+
 
     </script>
 </body>
